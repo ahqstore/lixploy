@@ -1,0 +1,8 @@
+[package]
+name = "lixploy"
+description = "An easy wrapper around .deb, .rpm (and flatpak?) to help AHQ Store install those"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.40.0", features = ["fs", "process", "time", "io-std"] }
