@@ -1,10 +1,13 @@
-use lixploy::{flatpak::flatpack_supported, native::{generate, native_supported}};
-use tokio::fs;
-
-#[tokio::main]
+#[tokio::main(flavor = "current_thread")]
 async fn main() {
-  native_supported().await;
-  println!("{}", flatpack_supported().await);
+  #[cfg(target_os = "linux")]
+  {
+    use lixploy::{flatpak::flatpack_supported, native::{generate, native_supported}};
+    use tokio::fs;
 
-  fs::write("./data", generate("deb", "rpm").await).await;
+    native_supported().await;
+    println!("{}", flatpack_supported().await);
+
+    fs::write("./data", generate("deb", "rpm").await).await;
+  }
 }

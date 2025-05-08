@@ -1,7 +1,10 @@
+#[cfg(target_os = "linux")]
 use std::{env, io::Error};
 
+#[cfg(target_os = "linux")]
 use tokio::fs;
 
+#[cfg(target_os = "linux")]
 pub async fn update_appimg(dir: &str, user: bool) -> Result<(), Error> {
   let mut dir_dat = fs::read_dir(&dir).await?;
 
@@ -46,6 +49,7 @@ pub async fn update_appimg(dir: &str, user: bool) -> Result<(), Error> {
   Err(Error::other("Unable to find .desktop file"))
 }
 
+#[cfg(target_os = "linux")]
 async fn install(desktop: &str, x: &str, user: bool) -> Result<(), Error> {
   let dst = if user {
     let app = format!("{}/.local/share/applications", env::var("HOME").map_err(|_| Error::other("Could not find $HOME variable, is it set?"))?);
@@ -62,6 +66,6 @@ async fn install(desktop: &str, x: &str, user: bool) -> Result<(), Error> {
       format!("/usr/share/applications/{x}")
     }
   };
-
+  
   fs::symlink(desktop, dst).await
 }
