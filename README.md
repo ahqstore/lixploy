@@ -9,8 +9,13 @@
 - ✅ Installs `.AppImage` files with proper permissions
 - ✅ Moves the executable to a persistent location
 - ✅ Generates a `.desktop` entry
-- ✅ Supports custom or extracted icons
 - ✅ Integrates with the AHQ Store's internal package registry
+
+---
+
+## Todo
+
+- ⏲️ Support custom or extracted icons
 
 ---
 
